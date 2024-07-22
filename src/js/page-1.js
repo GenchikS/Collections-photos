@@ -1,5 +1,8 @@
+import { getSoursePhoto } from "./pixabay_api_page_1";
+import { getMarcup } from "./render_getMarcup";
 
 const inputForm = document.querySelector(".form");
+const photoGallery = document.querySelector(".photo-gallery")
 
 
 inputForm.addEventListener("submit", inputFormSubmit)
@@ -16,21 +19,17 @@ function inputFormSubmit(event) {
         return
     } else {
         getSoursePhoto(inputText)
-        .then((data) => {console.log("data.hits", data.hits)})
-        .catch((error) => console.log("error", error))
+            .then((data) => {
+                if (Number(data.hits.length) === 0) {
+                    return console.log("Фото не знайдені")
+                }
+                photoGallery.innerHTML = "";
+                getMarcup(data.hits);
+                })
+            .catch((error) => console.log("error", error))
         }
     form.reset();
 }
 
-const KEY_API = `44770113-cb4279c01992ac20f8c79d080`;
 
-function getSoursePhoto(inputText) {
-    return fetch(`https://pixabay.com/api/?key=${KEY_API}&q=${inputText}&image_type=photo&orientation=horizontal&safesearch=true&per_page=10`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.status);
-            }
-            return response.json();
-        })
-}
     
