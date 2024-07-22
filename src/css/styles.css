@@ -48,7 +48,7 @@
   text-align: center;
   align-content: center;
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
   margin-bottom: 16px;
   background-color: #4646bd;
 }
@@ -79,7 +79,7 @@
     text-align: center;
     align-content: center;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
     margin-bottom: 16px;
     background-color: #4646bd;
 }
@@ -90,7 +90,7 @@
 }
 
 /* page-1 */
-.button-source{
+.button-submit{
     width: 80px;
     height: 40px;
     font-weight: 500;
@@ -105,7 +105,7 @@
     margin-left: 8px;
 }
 
-.button-source:hover {
+.button-submit:hover {
   background-color: #d3d4d5;
   border: 3px solid #232323;
   color: #232323;
