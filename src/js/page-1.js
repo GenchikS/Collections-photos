@@ -1,5 +1,7 @@
-import { getSoursePhoto } from "./pixabay_api_page_1";
+import { getSourcePhoto } from "./pixabay_api_page_1";
 import { getMarcup } from "./render_getMarcup";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
 const inputForm = document.querySelector(".form");
 const photoGallery = document.querySelector(".photo-gallery");
@@ -17,14 +19,25 @@ function inputFormSubmit(event) {
     inputText = (form.elements.input.value).trim().toLowerCase(); 
     // console.log("input", inputText);
     if (inputText === "") {
-        console.log("Введіть пошук")
+        iziToast.show({
+            position: 'topCenter',
+            backgroundColor: 'rgba(99, 66, 33, 0.6)',
+            messageColor: '#ffffff',
+            message: 'Input name photo ... !'
+            });
         return
     } else {
         page = 1;
-        getSoursePhoto(inputText, page)
+        getSourcePhoto(inputText, page)
             .then((data) => {
                 if (Number(data.hits.length) === 0) {
-                    return console.log("Фото не знайдені")
+                        iziToast.show({
+                        position: 'topCenter',
+                        backgroundColor: 'rgba(99, 66, 33, 0.6)',
+                        messageColor: '#ffffff',
+                        message: 'Photo search did not produce results ... !'
+                        });
+                    return
                 }else if( 12 >  Number(data.hits.length)){
                         photoGallery.innerHTML = "";
                         getMarcup(data.hits);
@@ -35,16 +48,24 @@ function inputFormSubmit(event) {
                         buttonNextPhotoRemove();
                     }
                 })
-            .catch((error) => console.log("error server. Спробуйте ще раз", error))
+            .catch((error) => 
+                    iziToast.show({
+                        position: 'topCenter',
+                        backgroundColor: 'rgba(99, 66, 33, 0.6)',
+                        messageColor: '#ffffff',
+                        message: 'Server error. Please try again later ... !'
+                    });
+                // console.log("Server error. Please try again later", error)
+                )
         }
     form.reset();
 }
 
 buttonNext.addEventListener(`click`, nextRenderFoto);
 
-function nextRenderFoto(event){
+function nextRenderFoto(){
     page += 1;
-    getSoursePhoto(inputText, page)
+    getSourcePhoto(inputText, page)
     .then((data) => {
          if( 12 >  Number(data.hits.length)){
                         getMarcup(data.hits);
@@ -54,7 +75,15 @@ function nextRenderFoto(event){
                         buttonNextPhotoRemove();
                     }
                 })
-            .catch((error) => console.log("error server. Спробуйте ще раз", error))
+            .catch((error) => 
+                iziToast.show({
+                        position: 'topCenter',
+                        backgroundColor: 'rgba(99, 66, 33, 0.6)',
+                        messageColor: '#ffffff',
+                        message: 'Server error. Please try again later ... !'
+                    });
+                // console.log("Server error. Please try again later", error)
+            )
 }
 
 
