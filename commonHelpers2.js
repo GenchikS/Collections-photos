@@ -1,14 +1,14 @@
-import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                      */const h="44770113-cb4279c01992ac20f8c79d080";function g(o){return fetch(`https://pixabay.com/api/?key=${h}&q=${o}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12`).then(t=>{if(!t.ok)throw new Error(t.status);return t.json()})}const f=document.querySelector(".photo-gallery");function l(o){const t=o.map(({webformatURL:e,largeImageURL:n,tags:c,likes:a,views:u,comments:m,downloads:p})=>`
+import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                      */const b="44770113-cb4279c01992ac20f8c79d080";function c(o,t){return fetch(`https://pixabay.com/api/?key=${b}&q=${o}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=${t}`).then(e=>{if(!e.ok)throw new Error(e.status);return e.json()})}const x=document.querySelector(".photo-gallery");function l(o){const t=o.map(({webformatURL:e,largeImageURL:h,tags:m,likes:p,views:g,comments:f,downloads:d})=>`
         <li class="container-photo">
-        <a href="${n}"></a>
-        <img src="${e}" alt="${c}" class="img-photo">
+        <a href="${h}"></a>
+        <img src="${e}" alt="${m}" class="img-photo">
             <ul class="list-text relative">
-                <li class="list-title"><p class="list-text-img">likes:</br>${a}</p></li>
-                <li class="list-title"><p class="list-text-img">views:</br>${u}</p></li>
-                <li class="list-title"><p class="list-text-img">comments:</br>${m}</p></li>
-                <li class="list-title"><p class="list-text-img">downloads:</br>${p}</p></li>
+                <li class="list-title"><p class="list-text-img">likes:</br>${p}</p></li>
+                <li class="list-title"><p class="list-text-img">views:</br>${g}</p></li>
+                <li class="list-title"><p class="list-text-img">comments:</br>${f}</p></li>
+                <li class="list-title"><p class="list-text-img">downloads:</br>${d}</p></li>
             </ul>
         </img>
       </li>
-    `).join("");f.insertAdjacentHTML("beforeend",t)}const d=document.querySelector(".form"),s=document.querySelector(".photo-gallery"),r=document.querySelector(".button-next");d.addEventListener("submit",b);let i="";function b(o){o.preventDefault();const t=o.target;if(i=t.elements.input.value.trim().toLowerCase(),i===""){console.log("Введіть пошук");return}else g(i).then(e=>{if(Number(e.hits.length)===0)return console.log("Фото не знайдені");12>Number(e.hits.length)?(s.innerHTML="",l(e.hits),y()):(s.innerHTML="",l(e.hits),x())}).catch(e=>console.log("error server. Спробуйте ще раз",e));t.reset()}function x(){r.classList.remove("hidden")}function y(){r.classList.add("hidden")}
+    `).join("");x.insertAdjacentHTML("beforeend",t)}const y=document.querySelector(".form"),r=document.querySelector(".photo-gallery"),n=document.querySelector(".button-next");y.addEventListener("submit",$);let i="",s;function $(o){o.preventDefault();const t=o.target;if(i=t.elements.input.value.trim().toLowerCase(),i===""){console.log("Введіть пошук");return}else s=1,c(i,s).then(e=>{if(Number(e.hits.length)===0)return console.log("Фото не знайдені");12>Number(e.hits.length)?(r.innerHTML="",l(e.hits),a()):(r.innerHTML="",l(e.hits),u())}).catch(e=>console.log("error server. Спробуйте ще раз",e));t.reset()}n.addEventListener("click",v);function v(o){s+=1,c(i,s).then(t=>{12>Number(t.hits.length)?(l(t.hits),a()):(l(t.hits),u())}).catch(t=>console.log("error server. Спробуйте ще раз",t))}function u(){n.classList.remove("hidden")}function a(){n.classList.add("hidden")}
 //# sourceMappingURL=commonHelpers2.js.map
