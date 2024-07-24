@@ -24,7 +24,7 @@ function inputFormSubmit(event) {
             backgroundColor: 'rgba(99, 66, 33, 0.6)',
             messageColor: '#ffffff',
             message: 'Input name photo ... !'
-            });
+            })
         return
     } else {
         page = 1;
@@ -54,7 +54,7 @@ function inputFormSubmit(event) {
                         backgroundColor: 'rgba(99, 66, 33, 0.6)',
                         messageColor: '#ffffff',
                         message: 'Server error. Please try again later ... !'
-                    });
+                    })
                 // console.log("Server error. Please try again later", error)
                 )
         }
@@ -81,7 +81,7 @@ function nextRenderFoto(){
                         backgroundColor: 'rgba(99, 66, 33, 0.6)',
                         messageColor: '#ffffff',
                         message: 'Server error. Please try again later ... !'
-                    });
+                    })
                 // console.log("Server error. Please try again later", error)
             )
 }
